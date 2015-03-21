@@ -29,11 +29,12 @@
 #define STEERING_FLAG 2
 #define AUX_FLAG 4
 
-#define THROTTLE_THRESHOLD 1490
+#define THROTTLE_THRESHOLD 1500
 #define MODE_SWITCH_DURATION 4000
 
-#define CHILD_MODE_ON 1
-byte mode = !CHILD_MODE_ON;
+
+enum CHILD_MODE { CHILD_MODE_ON, CHILD_MODE_OFF };
+CHILD_MODE mode = CHILD_MODE_OFF;
 
 // holds the update flags defined above
 volatile uint8_t bUpdateFlagsShared;
@@ -158,8 +159,6 @@ void loop()
 	// this allows us to only calculate new values when we have new inputs, rather than
 	// on every cycle.
 	/*
-	
-	*/
 	if (unThrottleIn <= THROTTLE_THRESHOLD && unThrottleIn >= (THROTTLE_THRESHOLD - 20))
 	{
 		unsigned long ulCurrentCounter = millis();
@@ -185,11 +184,20 @@ void loop()
 			}
 		}
 	}
+	*/
+	if (unAuxIn < 1500 && mode == CHILD_MODE_ON)
+	{
+		switchMode();
+	}
+	else if (unAuxIn > 1500 && mode == CHILD_MODE_OFF)
+	{
+		switchMode();
+	}
+
 	if (bUpdateFlags & THROTTLE_FLAG)
 	{
-		if (CHILD_MODE_ON)
+		if (mode == CHILD_MODE_ON)
 		{
-
 			CRCArduinoFastServos::writeMicroseconds(SERVO_THROTTLE, recalculateTrottle(unThrottleIn));
 		}
 		else
@@ -210,9 +218,26 @@ void loop()
 	bUpdateFlags = 0;
 }
 
+void switchMode()
+{
+	switch (mode)
+	{
+	case CHILD_MODE_ON:
+		mode = CHILD_MODE_OFF;
+		digitalWrite(ORANGE_LED, LOW);
+		break;
+	case CHILD_MODE_OFF:
+		mode = CHILD_MODE_ON;
+		digitalWrite(ORANGE_LED, HIGH);
+		break;
+	default:
+		break;
+	}
+}
+
 uint16_t recalculateTrottle(uint16_t throttle)
 {
-	return (uint16_t)(((float)throttle - 1000.0f) / (2000.0f - 1000.0f) * (1700.0f - 1300.0f) + 1300.0f);
+	return (uint16_t)(((float)throttle - 1000.0f) / (2000.0f - 1000.0f) * (1650.0f - 1350.0f) + 1350.0f);
 }
 
 // simple interrupt service routine
