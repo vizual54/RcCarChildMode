@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RcCarChildMode", "RcCarChildMode.vcxproj", "{7D03A936-1361-42C7-A08B-8F22FB006611}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RcCarYawControl", "..\RcCarYawControl\RcCarYawControl.vcxproj", "{B8B786E8-DD06-4851-BAFD-676CB3B065CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -15,6 +17,10 @@ Global
 		{7D03A936-1361-42C7-A08B-8F22FB006611}.Debug|Win32.Build.0 = Debug|Win32
 		{7D03A936-1361-42C7-A08B-8F22FB006611}.Release|Win32.ActiveCfg = Release|Win32
 		{7D03A936-1361-42C7-A08B-8F22FB006611}.Release|Win32.Build.0 = Release|Win32
+		{B8B786E8-DD06-4851-BAFD-676CB3B065CF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B8B786E8-DD06-4851-BAFD-676CB3B065CF}.Debug|Win32.Build.0 = Debug|Win32
+		{B8B786E8-DD06-4851-BAFD-676CB3B065CF}.Release|Win32.ActiveCfg = Release|Win32
+		{B8B786E8-DD06-4851-BAFD-676CB3B065CF}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
