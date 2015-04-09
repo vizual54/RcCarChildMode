@@ -69,21 +69,21 @@ uint16_t unRotationCenter = ROTATION_CENTER; // the gyro I am using outputs a ce
 //////////////////////////////////////////////////////////////////
 // ANALOG PINS
 //////////////////////////////////////////////////////////////////
-#define THROTTLE_SENSITIVITY_PIN 0
-#define STEERING_SENSITIVITY_PIN 1
-#define THROTTLE_DECAY_PIN 2
-#define STEERING_DECAY_PIN 3
-#define GYRO_PIN 5
+#define THROTTLE_SENSITIVITY_PIN 1
+#define STEERING_SENSITIVITY_PIN 2
+#define THROTTLE_DECAY_PIN 3
+#define STEERING_DECAY_PIN 4
+#define GYRO_PIN 0
 //////////////////////////////////////////////////////////////////
 // DIGITAL PINS
 //////////////////////////////////////////////////////////////////
 #define PROGRAM_PIN 9
-#define INFORMATION_INDICATOR_PIN 5
-#define ERROR_INDICATOR_PIN 6
-#define THROTTLE_IN_PIN 2
-#define STEERING_IN_PIN 3
-#define THROTTLE_OUT_PIN 8
-#define STEERING_OUT_PIN 7
+#define INFORMATION_INDICATOR_PIN 12
+#define ERROR_INDICATOR_PIN 13
+#define THROTTLE_IN_PIN 6
+#define STEERING_IN_PIN 5
+#define THROTTLE_OUT_PIN 9
+#define STEERING_OUT_PIN 8
 
 // These bit flags are set in bUpdateFlagsShared to indicate which
 // channels have new signals

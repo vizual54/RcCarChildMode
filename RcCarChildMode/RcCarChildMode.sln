@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RcCarChildMode", "RcCarChil
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RcCarYawControl", "..\RcCarYawControl\RcCarYawControl.vcxproj", "{B8B786E8-DD06-4851-BAFD-676CB3B065CF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RcCarGyroTest", "..\RcCarGyroTest\RcCarGyroTest.vcxproj", "{7B17C1AC-7E02-422C-A6E1-41583C64160C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -21,6 +23,10 @@ Global
 		{B8B786E8-DD06-4851-BAFD-676CB3B065CF}.Debug|Win32.Build.0 = Debug|Win32
 		{B8B786E8-DD06-4851-BAFD-676CB3B065CF}.Release|Win32.ActiveCfg = Release|Win32
 		{B8B786E8-DD06-4851-BAFD-676CB3B065CF}.Release|Win32.Build.0 = Release|Win32
+		{7B17C1AC-7E02-422C-A6E1-41583C64160C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7B17C1AC-7E02-422C-A6E1-41583C64160C}.Debug|Win32.Build.0 = Debug|Win32
+		{7B17C1AC-7E02-422C-A6E1-41583C64160C}.Release|Win32.ActiveCfg = Release|Win32
+		{7B17C1AC-7E02-422C-A6E1-41583C64160C}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
