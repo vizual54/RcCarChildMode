@@ -134,15 +134,54 @@ void loop()
 	}
 	if (bUpdateFlags & STEERING_FLAG)
 	{
+		Serial.print("Steering Compensation: ");
+		Serial.println(calculateSteeringCompensation());
+		//CRCArduinoFastServos::writeMicroseconds(SERVO_STEERING, unSteeringIn);
+		CRCArduinoFastServos::writeMicroseconds(SERVO_STEERING, constrain(unSteeringIn + calculateSteeringCompensation(), 1000, 2000));
 		//CRCArduinoFastServos::writeMicroseconds(SERVO_STEERING, recalculateSteering(unSteeringIn));
-		CRCArduinoFastServos::writeMicroseconds(SERVO_STEERING, recalculateSteering(1500));
+		//CRCArduinoFastServos::writeMicroseconds(SERVO_STEERING, recalculateSteering(1500));
 	}
+	
+	
 	if (bUpdateFlags & AUX_FLAG)
 	{
 		CRCArduinoFastServos::writeMicroseconds(SERVO_AUX, unAuxIn);
 	}
 
 	bUpdateFlags = 0;
+}
+
+int16_t calculateSteeringCompensation()
+{
+	static int16_t rotation;
+	analogRead(GYRO_PIN);
+	rotation = analogRead(GYRO_PIN);
+	
+
+	static float gain;
+	analogRead(GYRO_GAIN_PIN);
+	gain = (float)analogRead(GYRO_GAIN_PIN);
+	gain = map(gain, 0.0f, 1023.0f, 0.0f, 2.0f);
+	Serial.print("Gain: ");
+	Serial.println(gain);
+
+	static float compensation;
+	rotation = rotation - unRotationCenter;
+	Serial.print("Gyro: ");
+	Serial.println(rotation);
+	compensation = map((float)rotation, 0, (float)unRotationCenter, 0.0f, 500.0f);
+	Serial.print("Comp: ");
+	Serial.println(compensation);
+	if (gain != 0)
+	{
+		compensation /= gain;
+	}
+	return constrain((int16_t)compensation, -500, 500);
+}
+
+float map(float val, float fromMin, float fromMax, float toMin, float toMax)
+{
+	return (val - fromMin) * (toMax - toMin) / (fromMax - fromMin) + toMin;;
 }
 
 uint16_t recalculateSteering(uint16_t steeringIn)
